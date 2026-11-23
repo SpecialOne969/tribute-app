@@ -61,10 +61,6 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="text-neutral-300 italic text-base md:text-lg mb-4">
-            Greater Evangelism World Crusade
-          </p>
-
           <p className="text-neutral-300 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
             Share your tribute, testimony, and words of remembrance for a
             servant of God whose life and ministry have been a blessing to so many.
