@@ -1,0 +1,23 @@
+[
+  {
+    "id": "seed-1",
+    "name": "Pastor Emmanuel Okafor",
+    "role": "Senior Pastor",
+    "message": "Greater Evangelism World Crusade has been a beacon of light to countless souls across Nigeria and the world. Through the power of the Holy Spirit, lives are transformed daily. I am proud and honoured to have been part of this great move of God for over two decades. The mandate to reach the unreached is alive in every crusade, every outreach, and every soul won to Christ.",
+    "createdAt": "2026-11-01T10:00:00.000Z"
+  },
+  {
+    "id": "seed-2",
+    "name": "Sister Grace Adeyemi",
+    "role": "Church Member",
+    "message": "I gave my life to Christ at a GEWC crusade in 2010, and my life has never been the same since. The ministry's commitment to genuine evangelism and sincere discipleship is truly unmatched. The love of God flows through every arm of this great ministry. May God continue to expand this Great Commission to the ends of the earth.",
+    "createdAt": "2026-11-05T14:30:00.000Z"
+  },
+  {
+    "id": "seed-3",
+    "name": "Deacon Peter Nwosu",
+    "role": "Elder",
+    "message": "The impact of GEWC on our community cannot be measured in earthly terms. From powerful crusades to welfare programs and prison outreaches, this church truly lives out the Great Commission. I am eternally grateful for the privilege of serving in this ministry. What God has done through GEWC is a testament that the Gospel is still the power of God unto salvation.",
+    "createdAt": "2026-11-10T09:15:00.000Z"
+  }
+]

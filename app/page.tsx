@@ -1,69 +1,188 @@
 import Image from "next/image";
+import Navigation from "@/components/Navigation";
+import TributeSection from "@/components/TributeSection";
+import GalleryCarousel from "@/components/GalleryCarousel";
+
+const galleryImages = [
+  { src: "/619257.jpg", caption: "In Ministry" },
+  { src: "/619258.jpg", caption: "A Life of Service" },
+  { src: "/620469.jpg", caption: "Moments of Grace" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Navigation />
+
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <Image
+            src="/619257.jpg"
+            alt="Pastor Mrs Blessing .V. Olori"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </div>
+
+        {/* Dark overlay so text stays readable */}
+        <div className="absolute inset-0 bg-black/65" />
+
+        {/* Subtle gold glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(212,175,55,0.08) 0%, transparent 70%)",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+        {/* Bottom vignette */}
+        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+
+        {/* Content */}
+        <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-20">
+          <div className="relative w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-2 border-gold shadow-2xl shadow-gold/30">
+            <Image src="/619257.jpg" alt="Pastor Mrs Blessing .V. Olori" fill className="object-cover object-top" />
+          </div>
+
+          <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-4">
+            In Honour Of
           </p>
+
+          <h1 className="font-display font-bold leading-tight mb-5 drop-shadow-lg">
+            <span className="block text-4xl sm:text-6xl md:text-7xl text-white">
+              Pastor Mrs Blessing
+            </span>
+            <span className="block text-4xl sm:text-6xl md:text-7xl text-gold mt-1">
+              .V. Olori
+            </span>
+          </h1>
+
+          <p className="text-neutral-300 italic text-base md:text-lg mb-4">
+            Greater Evangelism World Crusade
+          </p>
+
+          <p className="text-neutral-300 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+            Share your tribute, testimony, and words of remembrance for a
+            servant of God whose life and ministry have been a blessing to so many.
+          </p>
+
+          <div className="flex justify-center">
+            <a
+              href="#tributes"
+              className="bg-gold hover:bg-gold-bright text-black font-bold py-3.5 px-9 rounded-full text-base transition-all hover:scale-105 hover:shadow-xl hover:shadow-gold/25"
+            >
+              Leave a Tribute
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Scroll cue */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce">
+          <span className="text-neutral-400 text-xs uppercase tracking-widest">Scroll</span>
+          <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ── ABOUT ────────────────────────────────────────────────────── */}
+      <section id="about" className="py-24 bg-neutral-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <span className="text-gold text-xs font-semibold uppercase tracking-widest">
+            A Life of Service
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mt-3 mb-5">
+            A Legacy of Faith &amp; Dedication
+          </h2>
+          <div className="w-24 h-0.5 bg-gold mx-auto rounded-full mb-10" />
+
+          <p className="text-neutral-300 text-lg leading-relaxed mb-6">
+            Pastor Mrs Blessing .V. Olori has been a faithful servant of God within
+            Greater Evangelism World Crusade (GEWC). She was a loving wife, a devoted
+            mother, a spiritual mother to many, and a tremendous blessing to the Church
+            and the body of Christ. While her departure has created an irreplaceable
+            vacuum in our hearts and in the Ministry, we take solace in the assurance
+            of God&apos;s Word:
+          </p>
+          <blockquote className="border-l-4 border-gold pl-6 my-8 text-left max-w-2xl mx-auto">
+            <p className="text-gold italic text-xl leading-relaxed">
+              &ldquo;Precious in the sight of the LORD is the death of his saints.&rdquo;
+            </p>
+            <cite className="text-neutral-500 text-sm mt-3 block not-italic">
+              — Psalm 116:15 (KJV)
+            </cite>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* ── GALLERY ──────────────────────────────────────────────────── */}
+      <section id="gallery" className="py-24 bg-neutral-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-14">
+            <span className="text-gold text-xs font-semibold uppercase tracking-widest">
+              Photo Gallery
+            </span>
+            <h2 className="font-display text-4xl font-bold text-white mt-3">
+              Moments of Glory
+            </h2>
+            <div className="w-24 h-0.5 bg-gold mx-auto mt-5 rounded-full" />
+          </div>
+
+          <GalleryCarousel images={galleryImages} />
+        </div>
+      </section>
+
+      {/* ── TRIBUTE SECTION (client component) ───────────────────────── */}
+      <TributeSection />
+
+      {/* ── FOOTER ───────────────────────────────────────────────────── */}
+      <footer className="bg-neutral-950 border-t border-neutral-800 py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gold/40 flex-shrink-0">
+                  <Image src="/619257.jpg" alt="Pastor Mrs Blessing .V. Olori" fill className="object-cover object-top" />
+                </div>
+                <span className="font-bold text-base text-white">Pastor Mrs Blessing .V. Olori</span>
+              </div>
+              <p className="text-neutral-500 text-sm leading-relaxed">
+                A tribute to Pastor Mrs Blessing .V. Olori
+              </p>
+            </div>
+
+            {/* Quick links */}
+            <div>
+              <h4 className="text-gold font-bold uppercase tracking-wider text-xs mb-4">
+                Quick Links
+              </h4>
+              <ul className="space-y-2.5 text-sm">
+                {[
+                  { href: "#home", label: "Home" },
+                  { href: "#about", label: "About" },
+                  { href: "#gallery", label: "Gallery" },
+                  { href: "#tributes", label: "Tributes" },
+                ].map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} className="text-neutral-500 hover:text-gold transition-colors">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-neutral-800 pt-6 text-center text-neutral-700 text-xs">
+            &copy; 2026 Greater Evangelism World Crusade. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
