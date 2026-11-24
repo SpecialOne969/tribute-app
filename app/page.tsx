@@ -2,6 +2,7 @@ import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import TributeSection from "@/components/TributeSection";
 import GalleryCarousel from "@/components/GalleryCarousel";
+import GalleryGrid from "@/components/GalleryGrid";
 
 const BASE = "/Dir wife";
 
@@ -157,23 +158,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {photoGallery.map((src) => (
-              <div
-                key={src}
-                className="group relative overflow-hidden rounded-xl aspect-square border border-neutral-800 hover:border-gold/40 transition-colors duration-300"
-              >
-                <Image
-                  src={src}
-                  alt="Cherished memory"
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
-          </div>
+          <GalleryGrid images={photoGallery} initialCount={8} />
         </div>
       </section>
 
