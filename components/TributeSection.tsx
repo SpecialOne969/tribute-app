@@ -87,93 +87,131 @@ function UploadIcon({ className }: { className?: string }) {
   );
 }
 
+function ImageLightbox({ src, onClose }: { src: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 text-white flex items-center justify-center text-xl transition-colors z-10"
+        aria-label="Close"
+      >
+        ×
+      </button>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt="Attached document"
+        className="max-w-full max-h-[90vh] object-contain rounded-xl select-none"
+        draggable={false}
+        onContextMenu={(e) => e.preventDefault()}
+        onClick={(e) => e.stopPropagation()}
+        style={{ pointerEvents: "none" }}
+      />
+      <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-neutral-500 text-xs select-none">
+        Press Esc or click outside to close
+      </p>
+    </div>
+  );
+}
+
 function TributeCard({ tribute, index }: { tribute: Tribute; index: number }) {
   const [expanded, setExpanded] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const initial = tribute.name.charAt(0).toUpperCase();
   const isLong = tribute.message.length > 220;
   const delay = `${(index % 6) * 80}ms`;
 
   return (
-    <div
-      className="bg-neutral-900 rounded-2xl overflow-hidden border-t-2 border-gold flex flex-col hover:border-gold-bright transition-colors duration-300"
-      style={{ animationDelay: delay }}
-    >
-      <div className="p-6 flex flex-col flex-1">
-        {/* Header */}
-        <div className="flex items-start gap-4 mb-5">
-          <div className="w-11 h-11 rounded-full bg-gold flex items-center justify-center flex-shrink-0">
-            <span className="text-black font-bold text-base">{initial}</span>
+    <>
+      {lightboxOpen && tribute.document?.type.startsWith("image/") && (
+        <ImageLightbox src={tribute.document.data} onClose={() => setLightboxOpen(false)} />
+      )}
+      <div
+        className="bg-neutral-900 rounded-2xl overflow-hidden border-t-2 border-gold flex flex-col hover:border-gold-bright transition-colors duration-300"
+        style={{ animationDelay: delay }}
+      >
+        <div className="p-6 flex flex-col flex-1">
+          {/* Header */}
+          <div className="flex items-start gap-4 mb-5">
+            <div className="w-11 h-11 rounded-full bg-gold flex items-center justify-center flex-shrink-0">
+              <span className="text-black font-bold text-base">{initial}</span>
+            </div>
+            <div className="min-w-0">
+              <p className="font-bold text-white truncate">{tribute.name}</p>
+              <span className="inline-block bg-neutral-800 text-gold border border-gold/25 text-xs font-semibold px-2.5 py-0.5 rounded-full mt-0.5">
+                {tribute.role}
+              </span>
+            </div>
           </div>
-          <div className="min-w-0">
-            <p className="font-bold text-white truncate">{tribute.name}</p>
-            <span className="inline-block bg-neutral-800 text-gold border border-gold/25 text-xs font-semibold px-2.5 py-0.5 rounded-full mt-0.5">
-              {tribute.role}
-            </span>
-          </div>
-        </div>
 
-        {/* Message */}
-        <div className="flex-1">
-          <p className="text-gold/25 text-3xl font-serif leading-none mb-1 select-none">&ldquo;</p>
-          <p
-            className={`text-neutral-300 leading-relaxed text-sm ${
-              !expanded && isLong ? "line-clamp-4" : ""
-            }`}
-          >
-            {tribute.message}
-          </p>
-          {isLong && (
-            <button
-              onClick={() => setExpanded((e) => !e)}
-              className="mt-2 text-gold hover:text-gold-bright text-sm font-medium transition-colors"
+          {/* Message */}
+          <div className="flex-1">
+            <p className="text-gold/25 text-3xl font-serif leading-none mb-1 select-none">&ldquo;</p>
+            <p
+              className={`text-neutral-300 leading-relaxed text-sm ${
+                !expanded && isLong ? "line-clamp-4" : ""
+              }`}
             >
-              {expanded ? "Show less" : "Read more"}
-            </button>
-          )}
-        </div>
-
-        {/* Attached document */}
-        {tribute.document && (
-          <div className="mt-4 pt-4 border-t border-neutral-800">
-            {tribute.document.type.startsWith("image/") ? (
-              <a
-                href={tribute.document.data}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group"
+              {tribute.message}
+            </p>
+            {isLong && (
+              <button
+                onClick={() => setExpanded((e) => !e)}
+                className="mt-2 text-gold hover:text-gold-bright text-sm font-medium transition-colors"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={tribute.document.data}
-                  alt="Attached scanned document"
-                  className="w-full max-h-52 object-contain rounded-lg bg-neutral-950 border border-neutral-800"
-                />
-                <p className="text-gold text-xs mt-1.5 font-medium group-hover:text-gold-bright transition-colors">
-                  Click to view full size
-                </p>
-              </a>
-            ) : (
-              <a
-                href={tribute.document.data}
-                download={tribute.document.name}
-                className="flex items-center gap-3 bg-neutral-800 hover:bg-neutral-700 rounded-xl px-4 py-3 transition-colors"
-              >
-                <PDFIcon className="w-6 h-6 text-gold flex-shrink-0" />
-                <span className="text-neutral-300 text-sm truncate flex-1">
-                  {tribute.document.name}
-                </span>
-                <span className="text-gold text-xs font-semibold flex-shrink-0">Download</span>
-              </a>
+                {expanded ? "Show less" : "Read more"}
+              </button>
             )}
           </div>
-        )}
 
-        {/* Date */}
-        <div className="mt-5 pt-4 border-t border-neutral-800 text-xs text-neutral-600">
-          {formatDate(tribute.createdAt)}
+          {/* Attached document */}
+          {tribute.document && (
+            <div className="mt-4 pt-4 border-t border-neutral-800">
+              {tribute.document.type.startsWith("image/") ? (
+                <button
+                  onClick={() => setLightboxOpen(true)}
+                  className="block w-full group text-left"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={tribute.document.data}
+                    alt="Attached scanned document"
+                    className="w-full max-h-52 object-contain rounded-lg bg-neutral-950 border border-neutral-800 select-none pointer-events-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                  <p className="text-gold text-xs mt-1.5 font-medium group-hover:text-gold-bright transition-colors">
+                    Click to view full size
+                  </p>
+                </button>
+              ) : (
+                <div className="flex items-center gap-3 bg-neutral-800 rounded-xl px-4 py-3">
+                  <PDFIcon className="w-6 h-6 text-gold flex-shrink-0" />
+                  <span className="text-neutral-300 text-sm truncate flex-1">
+                    {tribute.document.name}
+                  </span>
+                  <span className="text-neutral-500 text-xs flex-shrink-0">PDF attached</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Date */}
+          <div className="mt-5 pt-4 border-t border-neutral-800 text-xs text-neutral-600">
+            {formatDate(tribute.createdAt)}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
