@@ -14,9 +14,10 @@ export default function Navigation() {
   }, []);
 
   const links = [
-    { href: "#about", label: "About" },
+    { href: "#about",   label: "About" },
     { href: "#gallery", label: "Gallery" },
-    { href: "#tributes", label: "Tributes" },
+    { href: "#photos",  label: "Photos" },
+    { href: "#tributes",label: "Tributes" },
   ];
 
   return (

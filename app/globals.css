@@ -1,124 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #D4AF37;
-  --color-gold-bright: #E8C84A;
-  --color-gold-dim: #A88A28;
-  --color-gold-muted: rgba(212, 175, 55, 0.12);
+  /* Light Gold — permanent default */
+  --color-gold: #B8860B;
+  --color-gold-bright: #D4AF37;
+  --color-gold-dim: #8B6508;
+  --color-gold-muted: rgba(184, 134, 11, 0.15);
+
+  /* Warm cream background scale */
+  --color-neutral-950: #FEFCF3;
+  --color-neutral-900: #F7F0D8;
+  --color-neutral-800: #EDE4B8;
+  --color-neutral-700: #D8CC90;
+  --color-neutral-600: #7A6020;
+  --color-neutral-500: #5C4815;
+  --color-neutral-400: #3D3010;
+  --color-neutral-300: #2A2008;
 
   --font-display: var(--font-playfair), "Georgia", serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: #0a0a0a;
-  color: #ffffff;
+  background: #FEFCF3;
+  color: #1a1305;
   font-family: var(--font-body);
-  transition: background 0.4s ease;
 }
 
-.font-display {
-  font-family: var(--font-display);
-}
+.font-display { font-family: var(--font-display); }
 
-/* ── Light Gold theme ──────────────────────────── */
-html[data-theme="light"] {
-  /* Accent - rich dark gold / classic gold */
-  --color-gold: #B8860B;
-  --color-gold-bright: #D4AF37;
-  --color-gold-dim: #8B6508;
-  --color-gold-muted: rgba(184, 134, 11, 0.15);
-  /* Backgrounds - warm cream */
-  --color-neutral-950: #FEFCF3;
-  --color-neutral-900: #F7F0D8;
-  --color-neutral-800: #EDE4B8;
-  --color-neutral-700: #D8CC90;
-  /* Muted text - warm brown tones */
-  --color-neutral-600: #7A6020;
-  --color-neutral-500: #5C4815;
-  --color-neutral-400: #3D3010;
-  --color-neutral-300: #2A2008;
-}
-html[data-theme="light"] body { background: #FEFCF3; }
+/* Make white text dark on light backgrounds */
+.text-white   { color: #1a1305; }
+.text-neutral-100 { color: #2a2008; }
+.text-neutral-200 { color: #3a2d10; }
 
-/* Dark text on light background sections */
-html[data-theme="light"] .text-white   { color: #1a1305; }
-html[data-theme="light"] .text-neutral-100 { color: #2a2008; }
-html[data-theme="light"] .text-neutral-200 { color: #3a2d10; }
+/* Restore white in the hero (dark photo overlay behind it) */
+#home .text-white       { color: #ffffff; }
+#home .text-neutral-100 { color: #f8f4e8; }
+#home .text-neutral-200 { color: #ede5c8; }
+#home .text-neutral-300 { color: #d4c070; }
+#home .text-neutral-400 { color: #bca858; }
+#home .text-neutral-500 { color: #a09040; }
 
-/* Restore white text inside the hero (it has a dark photo overlay) */
-html[data-theme="light"] #home .text-white   { color: #ffffff; }
-html[data-theme="light"] #home .text-neutral-100 { color: #f8f4e8; }
-html[data-theme="light"] #home .text-neutral-200 { color: #ede5c8; }
-html[data-theme="light"] #home .text-neutral-300 { color: #d4c070; }
-html[data-theme="light"] #home .text-neutral-400 { color: #bca858; }
-html[data-theme="light"] #home .text-neutral-500 { color: #a09040; }
-
-/* Input / textarea text colour */
-html[data-theme="light"] input,
-html[data-theme="light"] textarea,
-html[data-theme="light"] select { color: #1a1305; }
-
-/* ── Sky Blue theme ─────────────────────────────── */
-html[data-theme="blue"] {
-  /* Accent */
-  --color-gold: #38BDF8;
-  --color-gold-bright: #7DD3FC;
-  --color-gold-dim: #0EA5E9;
-  --color-gold-muted: rgba(56, 189, 248, 0.12);
-  /* Backgrounds — navy tinted */
-  --color-neutral-950: #060e1c;
-  --color-neutral-900: #091628;
-  --color-neutral-800: #0e1f38;
-  --color-neutral-700: #162947;
-  /* Text — cool blue tinted */
-  --color-neutral-600: #3d607e;
-  --color-neutral-500: #5a85a8;
-  --color-neutral-400: #8ab4cc;
-  --color-neutral-300: #c0d8e8;
-}
-html[data-theme="blue"] body { background: #060e1c; }
-
-/* ── Rose theme ─────────────────────────────────── */
-html[data-theme="rose"] {
-  /* Accent */
-  --color-gold: #F472B6;
-  --color-gold-bright: #F9A8D4;
-  --color-gold-dim: #EC4899;
-  --color-gold-muted: rgba(244, 114, 182, 0.12);
-  /* Backgrounds — warm rose tinted */
-  --color-neutral-950: #180d14;
-  --color-neutral-900: #21101c;
-  --color-neutral-800: #2f1628;
-  --color-neutral-700: #3e1e35;
-  /* Text — warm rose tinted */
-  --color-neutral-600: #7a4060;
-  --color-neutral-500: #9e6080;
-  --color-neutral-400: #c098aa;
-  --color-neutral-300: #e0c5d1;
-}
-html[data-theme="rose"] body { background: #180d14; }
-
-/* ── Purple theme ───────────────────────────────── */
-html[data-theme="purple"] {
-  /* Accent */
-  --color-gold: #A78BFA;
-  --color-gold-bright: #C4B5FD;
-  --color-gold-dim: #7C3AED;
-  --color-gold-muted: rgba(167, 139, 250, 0.12);
-  /* Backgrounds — deep purple tinted */
-  --color-neutral-950: #0d0a1a;
-  --color-neutral-900: #130f24;
-  --color-neutral-800: #1c1535;
-  --color-neutral-700: #261d47;
-  /* Text — cool purple tinted */
-  --color-neutral-600: #4e3f7a;
-  --color-neutral-500: #6e5ea0;
-  --color-neutral-400: #a090c5;
-  --color-neutral-300: #cbc4e3;
-}
-html[data-theme="purple"] body { background: #0d0a1a; }
+/* Input / textarea / select text */
+input, textarea, select { color: #1a1305; }

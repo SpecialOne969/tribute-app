@@ -3,11 +3,29 @@ import Navigation from "@/components/Navigation";
 import TributeSection from "@/components/TributeSection";
 import GalleryCarousel from "@/components/GalleryCarousel";
 
-const galleryImages = [
-  { src: "/619257.jpg", caption: "In Ministry" },
-  { src: "/619258.jpg", caption: "A Life of Service" },
-  { src: "/620469.jpg", caption: "Moments of Grace" },
+const BASE = "/Dir wife";
+
+// 5 images for the auto-advancing carousel
+const carouselImages = [
+  { src: "/619257.jpg",                           caption: "In Ministry" },
+  { src: "/619258.jpg",                           caption: "A Life of Service" },
+  { src: "/620469.jpg",                           caption: "Moments of Grace" },
+  { src: `${BASE}/IMG-20261124-WA0006.jpg`,       caption: "Cherished Moments" },
+  { src: `${BASE}/IMG-20261124-WA0007.jpg`,       caption: "Cherished Moments" },
+  { src: `${BASE}/IMG-20261124-WA0008.jpg`,       caption: "Cherished Moments" },
+  { src: `${BASE}/IMG-20261124-WA0009.jpg`,       caption: "Cherished Moments" },
+  { src: `${BASE}/IMG-20261124-WA0010.jpg`,       caption: "Cherished Moments" },
 ];
+
+// All remaining Dir wife photos for the full gallery grid
+const photoGallery = [
+  "WA0011","WA0012","WA0013","WA0014","WA0015","WA0016","WA0017","WA0018","WA0019","WA0020",
+  "WA0021","WA0022","WA0023","WA0024","WA0025","WA0026","WA0027","WA0028","WA0029","WA0030",
+  "WA0031","WA0032","WA0033","WA0034","WA0035","WA0036","WA0037","WA0038","WA0039","WA0040",
+  "WA0041","WA0042","WA0043","WA0044","WA0045","WA0046","WA0047","WA0048","WA0049","WA0050",
+  "WA0051","WA0052","WA0053","WA0054","WA0055","WA0056","WA0057","WA0058","WA0059","WA0060",
+  "WA0061","WA0062","WA0064","WA0065","WA0066","WA0067",
+].map((id) => `${BASE}/IMG-20261124-${id}.jpg`);
 
 export default function Home() {
   return (
@@ -16,7 +34,6 @@ export default function Home() {
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background photo */}
         <div className="absolute inset-0">
           <Image
             src="/619257.jpg"
@@ -26,23 +43,13 @@ export default function Home() {
             className="object-cover object-center"
           />
         </div>
-
-        {/* Dark overlay so text stays readable */}
         <div className="absolute inset-0 bg-black/65" />
-
-        {/* Subtle gold glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(212,175,55,0.08) 0%, transparent 70%)",
-          }}
+          style={{ background: "radial-gradient(ellipse 70% 50% at 50% 40%, rgba(212,175,55,0.08) 0%, transparent 70%)" }}
         />
-
-        {/* Bottom vignette */}
         <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
-        {/* Content */}
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-20">
           <div className="relative w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-2 border-gold shadow-2xl shadow-gold/30">
             <Image src="/619257.jpg" alt="Pastor Mrs Blessing .V. Olori" fill className="object-cover object-top" />
@@ -61,6 +68,10 @@ export default function Home() {
             </span>
           </h1>
 
+          <p className="text-neutral-300 italic text-base md:text-lg mb-4">
+            Greater Evangelism World Crusade
+          </p>
+
           <p className="text-neutral-300 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
             Share your tribute, testimony, and words of remembrance for a
             servant of God whose life and ministry have been a blessing to so many.
@@ -76,7 +87,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce">
           <span className="text-neutral-400 text-xs uppercase tracking-widest">Scroll</span>
           <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -115,7 +125,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── GALLERY ──────────────────────────────────────────────────── */}
+      {/* ── CAROUSEL GALLERY ─────────────────────────────────────────── */}
       <section id="gallery" className="py-24 bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
@@ -127,19 +137,53 @@ export default function Home() {
             </h2>
             <div className="w-24 h-0.5 bg-gold mx-auto mt-5 rounded-full" />
           </div>
-
-          <GalleryCarousel images={galleryImages} />
+          <GalleryCarousel images={carouselImages} />
         </div>
       </section>
 
-      {/* ── TRIBUTE SECTION (client component) ───────────────────────── */}
+      {/* ── FULL PHOTO GALLERY ───────────────────────────────────────── */}
+      <section id="photos" className="py-24 bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-14">
+            <span className="text-gold text-xs font-semibold uppercase tracking-widest">
+              Memories
+            </span>
+            <h2 className="font-display text-4xl font-bold text-white mt-3">
+              Cherished Memories
+            </h2>
+            <div className="w-24 h-0.5 bg-gold mx-auto mt-5 rounded-full" />
+            <p className="text-neutral-400 mt-5 text-sm">
+              A collection of precious moments from her life and ministry.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {photoGallery.map((src) => (
+              <div
+                key={src}
+                className="group relative overflow-hidden rounded-xl aspect-square border border-neutral-800 hover:border-gold/40 transition-colors duration-300"
+              >
+                <Image
+                  src={src}
+                  alt="Cherished memory"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRIBUTE SECTION ──────────────────────────────────────────── */}
       <TributeSection />
 
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
       <footer className="bg-neutral-950 border-t border-neutral-800 py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-            {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gold/40 flex-shrink-0">
@@ -152,17 +196,17 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Quick links */}
             <div>
               <h4 className="text-gold font-bold uppercase tracking-wider text-xs mb-4">
                 Quick Links
               </h4>
               <ul className="space-y-2.5 text-sm">
                 {[
-                  { href: "#home", label: "Home" },
-                  { href: "#about", label: "About" },
+                  { href: "#home",    label: "Home" },
+                  { href: "#about",   label: "About" },
                   { href: "#gallery", label: "Gallery" },
-                  { href: "#tributes", label: "Tributes" },
+                  { href: "#photos",  label: "Photos" },
+                  { href: "#tributes",label: "Tributes" },
                 ].map((l) => (
                   <li key={l.href}>
                     <a href={l.href} className="text-neutral-500 hover:text-gold transition-colors">
