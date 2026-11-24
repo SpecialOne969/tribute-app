@@ -36,6 +36,7 @@ export default function AdminPage() {
   const [tributes, setTributes] = useState<Tribute[]>([]);
   const [fetchError, setFetchError] = useState("");
   const [preview, setPreview] = useState<string | null>(null);
+  const [clearing, setClearing] = useState(false);
 
   const login = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,6 +60,20 @@ export default function AdminPage() {
       setFetchError("Failed to load tributes. Please try again.");
     } finally {
       setLoading(false);
+    }
+  }, [password]);
+
+  const clearAll = useCallback(async () => {
+    if (!window.confirm("Delete ALL tributes permanently? This cannot be undone.")) return;
+    setClearing(true);
+    try {
+      const res = await fetch("/api/admin/tributes", {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${password}` },
+      });
+      if (res.ok) setTributes([]);
+    } finally {
+      setClearing(false);
     }
   }, [password]);
 
@@ -129,6 +144,15 @@ export default function AdminPage() {
                 className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-5 py-2.5 rounded-xl text-sm transition-all"
               >
                 Download All ({withDocs.length})
+              </button>
+            )}
+            {tributes.length > 0 && (
+              <button
+                onClick={clearAll}
+                disabled={clearing}
+                className="bg-red-900/60 hover:bg-red-800 border border-red-700/50 text-red-300 font-medium px-5 py-2.5 rounded-xl text-sm transition-all disabled:opacity-50"
+              >
+                {clearing ? "Clearing…" : "Clear All Tributes"}
               </button>
             )}
             <button

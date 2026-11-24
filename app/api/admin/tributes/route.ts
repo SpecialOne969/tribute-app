@@ -48,3 +48,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Failed to load tributes." }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  if (!checkAuth(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  try {
+    if (USE_KV) {
+      const { kv } = await import("@vercel/kv");
+      await kv.set("gewc_tributes", []);
+    } else {
+      await fs.writeFile(DATA_FILE, JSON.stringify([], null, 2), "utf-8");
+    }
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "Failed to clear tributes." }, { status: 500 });
+  }
+}
