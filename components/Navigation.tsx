@@ -32,10 +32,10 @@ export default function Navigation() {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2.5 group">
           <div className="relative w-8 h-8 rounded-full overflow-hidden border border-gold/50 group-hover:border-gold transition-colors flex-shrink-0">
-            <Image src="/619257.jpg" alt="Pastor Mrs Blessing .V. Olori" fill className="object-cover object-top" />
+            <Image src="/619257.jpg" alt="Pastor Mrs I.V. Olori" fill className="object-cover object-top" />
           </div>
-          <span className="text-white font-bold text-sm tracking-wide hidden sm:block">Pastor Mrs Blessing .V. Olori</span>
-          <span className="text-white font-bold text-sm tracking-wide sm:hidden">Pst. Blessing .V. Olori</span>
+          <span className="text-white font-bold text-sm tracking-wide hidden sm:block">Pastor Mrs I.V. Olori</span>
+          <span className="text-white font-bold text-sm tracking-wide sm:hidden">Pst. I.V. Olori</span>
         </a>
 
         {/* Desktop links */}

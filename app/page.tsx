@@ -38,7 +38,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <Image
             src="/619257.jpg"
-            alt="Pastor Mrs Blessing .V. Olori"
+            alt="Pastor Mrs I.V. Olori"
             fill
             priority
             className="object-cover object-center"
@@ -53,7 +53,7 @@ export default function Home() {
 
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-20">
           <div className="relative w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-2 border-gold shadow-2xl shadow-gold/30">
-            <Image src="/619257.jpg" alt="Pastor Mrs Blessing .V. Olori" fill className="object-cover object-top" />
+            <Image src="/619257.jpg" alt="Pastor Mrs I.V. Olori" fill className="object-cover object-top" />
           </div>
 
           <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-4">
@@ -62,10 +62,10 @@ export default function Home() {
 
           <h1 className="font-display font-bold leading-tight mb-5 drop-shadow-lg">
             <span className="block text-4xl sm:text-6xl md:text-7xl text-white">
-              Pastor Mrs Blessing
+              Pastor Mrs
             </span>
             <span className="block text-4xl sm:text-6xl md:text-7xl text-gold mt-1">
-              .V. Olori
+              I.V. Olori
             </span>
           </h1>
 
@@ -108,7 +108,7 @@ export default function Home() {
           <div className="w-24 h-0.5 bg-gold mx-auto rounded-full mb-10" />
 
           <p className="text-neutral-300 text-lg leading-relaxed mb-6">
-            Pastor Mrs Blessing .V. Olori has been a faithful servant of God within
+            Pastor Mrs I.V. Olori has been a faithful servant of God within
             Greater Evangelism World Crusade (GEWC). She was a loving wife, a devoted
             mother, a spiritual mother to many, and a tremendous blessing to the Church
             and the body of Christ. While her departure has created an irreplaceable
@@ -172,12 +172,12 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gold/40 flex-shrink-0">
-                  <Image src="/619257.jpg" alt="Pastor Mrs Blessing .V. Olori" fill className="object-cover object-top" />
+                  <Image src="/619257.jpg" alt="Pastor Mrs I.V. Olori" fill className="object-cover object-top" />
                 </div>
-                <span className="font-bold text-base text-white">Pastor Mrs Blessing .V. Olori</span>
+                <span className="font-bold text-base text-white">Pastor Mrs I.V. Olori</span>
               </div>
               <p className="text-neutral-500 text-sm leading-relaxed">
-                A tribute to Pastor Mrs Blessing .V. Olori
+                A tribute to Pastor Mrs I.V. Olori
               </p>
             </div>
 

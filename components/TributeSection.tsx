@@ -346,7 +346,7 @@ export default function TributeSection() {
           <div className="w-24 h-0.5 bg-gold mx-auto mt-5 rounded-full" />
           <p className="text-neutral-400 mt-5 max-w-xl mx-auto text-sm leading-relaxed">
             Share your tribute, testimony, and words of remembrance for
-            Pastor Mrs Blessing .V. Olori. Your words are a gift that will endure.
+            Pastor Mrs I.V. Olori. Your words are a gift that will endure.
           </p>
         </div>
 
@@ -423,7 +423,7 @@ export default function TributeSection() {
                 <textarea
                   value={form.message}
                   onChange={handleChange("message")}
-                  placeholder="Share your tribute, a memory, or words of remembrance for Pastor Mrs Blessing .V. Olori..."
+                  placeholder="Share your tribute, a memory, or words of remembrance for Pastor Mrs I.V. Olori..."
                   rows={5}
                   maxLength={1000}
                   className={`${inputCls} resize-none ${

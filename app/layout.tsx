@@ -16,9 +16,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Tribute to Pastor Mrs Blessing .V. Olori",
+  title: "Tribute to Pastor Mrs I.V. Olori",
   description:
-    "A tribute wall honouring Pastor Mrs Blessing .V. Olori . Share your tribute, testimony, and words of remembrance.",
+    "A tribute wall honouring Pastor Mrs I.V. Olori . Share your tribute, testimony, and words of remembrance.",
 };
 
 export default function RootLayout({
